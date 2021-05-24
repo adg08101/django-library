@@ -39,6 +39,7 @@ class Book(models.Model):
     # La clase Genre ya ha sido definida, entonces podemos especificar el objeto arriba.
 
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+
     # ForeignKey, ya que un libro tiene un solo Language, pero el mismo Language puede estar en muchos libros.
     # 'Language' es un string, en vez de un objeto, porque la clase Language aún no ha sido declarada.
 
@@ -53,6 +54,15 @@ class Book(models.Model):
         Devuelve el URL a una instancia particular de Book
         """
         return reverse('book-detail', args=[str(self.id)])
+
+    def display_genre(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        tail = '...' if self.genre.all().count() > 3 else ''
+        return (', '.join([genre.name for genre in self.genre.all()[:3]])) + tail
+
+    display_genre.short_description = 'Genre'
 
 
 class BookInstance(models.Model):
@@ -105,6 +115,10 @@ class Author(models.Model):
         String para representar el Objeto Modelo
         """
         return '%s, %s' % (self.last_name, self.first_name)
+
+    def get_books(self):
+        books = Book.objects.filter(author=self.id)
+        return ', '.join([book.title for book in books])
 
 
 class Language(models.Model):
