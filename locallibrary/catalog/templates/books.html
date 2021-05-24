@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block title %}Books{% endblock %}
+{% block page %}
+Books
+{% endblock %}
+
+{% block content %}
+
+<p>The library has the following Books:</p>
+<ul>
+    {% for book in books %}
+    <li><strong>{{ forloop.counter }}.</strong> {{ book }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

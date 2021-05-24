@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block title %}Authors{% endblock %}
+{% block page %}
+Authors
+{% endblock %}
+
+{% block content %}
+
+<p>The library has the following Authors:</p>
+<ul>
+    {% for author in authors %}
+    <li><strong>{{ forloop.counter }}.</strong> {{ author }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
