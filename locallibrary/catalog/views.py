@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
+
 from .models import Book, Author, BookInstance, Genre
 
 
@@ -13,41 +15,25 @@ def index(request):
     # Libros disponibles (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
     num_authors = Author.objects.count()  # El 'all()' esta implícito por defecto.
+    num_genres = Genre.objects.count()
 
     # Renderiza la plantilla HTML index.html con los datos en la variable contexto
     return render(
         request,
         'index.html',
         context={'num_books': num_books, 'num_instances': num_instances,
-                 'num_instances_available': num_instances_available, 'num_authors': num_authors},
+                 'num_instances_available': num_instances_available, 'num_authors': num_authors,
+                 'num_genres': num_genres},
     )
 
 
-def authors(request):
-    """
-    Función vista para la página de autores del sitio.
-    """
+class AuthorListView(generic.ListView):
 
-    authors = Author.objects.all()  # El 'all()' esta implícito por defecto.
-
-    # Renderiza la plantilla HTML index.html con los datos en la variable contexto
-    return render(
-        request,
-        'authors.html',
-        context={'authors': authors},
-    )
+    def get_queryset(self):
+        return Author.objects.all()
 
 
-def books(request):
-    """
-    Función vista para la página de libros del sitio.
-    """
+class BookListView(generic.ListView):
 
-    books = Book.objects.all()  # El 'all()' esta implícito por defecto.
-
-    # Renderiza la plantilla HTML index.html con los datos en la variable contexto
-    return render(
-        request,
-        'books.html',
-        context={'books': books},
-    )
+    def get_queryset(self):
+        return Book.objects.all()
