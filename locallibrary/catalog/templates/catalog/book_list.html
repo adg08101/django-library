@@ -8,8 +8,8 @@
 
 <p>The library has the following Books:</p>
 <ul>
-    {% for book in books %}
-    <li><strong>{{ forloop.counter }}.</strong> {{ book }}</li>
+    {% for book in object_list %}
+    <li><a href="{{ book.get_absolute_url }}">{{ book }}</a></li>
     {% endfor %}
 </ul>
 
