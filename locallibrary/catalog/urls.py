@@ -1,12 +1,16 @@
 from django.conf.urls import url
+from django.urls import path
 
 from . import views
 from .models import Book, Author
+from django.contrib import admin
 
+
+app_name = "catalog"
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^books/$', views.BookListView.as_view(model=Book, template_name='books.html',
-                                                context_object_name='books'), name='books'),
-    url(r'^authors/', views.AuthorListView.as_view(model=Author, template_name='authors.html',
-                                                   context_object_name='authors'), name='authors'),
+    path(r'^admin/$', admin.site.urls, name='admin'),
+    url(r'^books/$', views.BookListView.as_view(model=Book, context_object_name='books'), name='books'),
+    url(r'^authors/$', views.AuthorListView.as_view(model=Author, template_name='authors.html',
+                                                    context_object_name='authors'), name='authors'),
 ]
