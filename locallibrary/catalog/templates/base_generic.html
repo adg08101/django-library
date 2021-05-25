@@ -22,9 +22,10 @@
         <div class="col-sm-2">
             {% block sidebar %}
             <ul class="sidebar-nav">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'books' %}">All books</a></li>
-                <li><a href="{% url 'authors' %}">All authors</a></li>
+                <li><a href="\admin">Admin</a></li>
+                <li><a href="{% url 'catalog:index' %}">Home</a></li>
+                <li><a href="{% url 'catalog:books' %}">All books</a></li>
+                <li><a href="{% url 'catalog:authors' %}">All authors</a></li>
             </ul>
             {% endblock %}
         </div>
