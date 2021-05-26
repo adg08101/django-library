@@ -62,6 +62,9 @@ class Book(models.Model):
         tail = '...' if self.genre.all().count() > 3 else ''
         return (', '.join([genre.name for genre in self.genre.all()[:3]])) + tail
 
+    def get_copies(self):
+        return self.bookinstance_set.all().count()
+
     display_genre.short_description = 'Genre'
 
 
