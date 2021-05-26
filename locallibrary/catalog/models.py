@@ -53,7 +53,7 @@ class Book(models.Model):
         """
         Devuelve el URL a una instancia particular de Book
         """
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('catalog:book-detail', args=[str(self.id)])
 
     def display_genre(self):
         """
@@ -119,6 +119,9 @@ class Author(models.Model):
     def get_books(self):
         books = Book.objects.filter(author=self.id)
         return ', '.join([book.title for book in books])
+
+    class Meta:
+        ordering = ['last_name']
 
 
 class Language(models.Model):
