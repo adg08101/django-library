@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 {% block title %}Books{% endblock %}
 {% block page %}
+<h1>Local Library
 {{ view }}
+</h1>
 {% endblock %}
 
 {% block content %}
@@ -9,7 +11,7 @@
 <p>The library has the following Books:</p>
 <ul>
     {% for book in object_list %}
-    <li><a href="{{ book.get_absolute_url }}">{{ book }}</a></li>
+    <li><a href="{{ book.get_absolute_url }}">{{ book }}</a> ({{ book.author }})</li>
     {% endfor %}
 </ul>
 

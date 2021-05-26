@@ -1,5 +1,5 @@
 {% extends "base_generic.html" %}
-
+{% block title %}{{ object.title }} - {{ object.author }}{% endblock %}
 {% block content %}
 <h1>Title: {{ object.title }}</h1>
 

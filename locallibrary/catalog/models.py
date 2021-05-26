@@ -120,6 +120,9 @@ class Author(models.Model):
         books = Book.objects.filter(author=self.id)
         return ', '.join([book.title for book in books])
 
+    class Meta:
+        ordering = ['last_name']
+
 
 class Language(models.Model):
     """
