@@ -1,0 +1,12 @@
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Books</h4>
+
+    {% for book in object.book_set.all %}
+    <hr>
+    <p><strong>Title: </strong><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+    <p><strong>ISBN: </strong> {{ book.isbn }}</p>
+    <p><strong>Copies: </strong>{{ book.get_copies }}</p>
+    <strong>Summary:</strong>
+    <p class="text-muted">{{ book.summary }}</p>
+    {% endfor %}
+</div>

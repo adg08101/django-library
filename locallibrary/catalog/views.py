@@ -34,6 +34,7 @@ class AuthorListView(generic.ListView):
 
 
 class BookListView(generic.ListView):
+    paginate_by = 10
 
     def get_queryset(self):
         return Book.objects.all()
@@ -48,6 +49,10 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
 
 
 """def book_detail_view(request, pk):

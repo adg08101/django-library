@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^authors/$', views.AuthorListView.as_view(model=Author, template_name='authors.html',
                                                     context_object_name='authors'), name='authors'),
     url(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+    url(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
 ]

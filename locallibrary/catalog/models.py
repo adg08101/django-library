@@ -62,6 +62,9 @@ class Book(models.Model):
         tail = '...' if self.genre.all().count() > 3 else ''
         return (', '.join([genre.name for genre in self.genre.all()[:3]])) + tail
 
+    def get_copies(self):
+        return self.bookinstance_set.all().count()
+
     display_genre.short_description = 'Genre'
 
 
@@ -119,6 +122,12 @@ class Author(models.Model):
     def get_books(self):
         books = Book.objects.filter(author=self.id)
         return ', '.join([book.title for book in books])
+
+    def get_absolute_url(self):
+        """
+        Devuelve el URL a una instancia particular de Book
+        """
+        return reverse('catalog:author-detail', args=[str(self.id)])
 
     class Meta:
         ordering = ['last_name']

@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ object.last_name }} - {{ object.first_name }}{% endblock %}
+{% block content %}
+<h1>{{ object.last_name }}, {{ object.first_name }}</h1>
+
+<p><strong>Dates:</strong> {{ object.date_of_birth }} - {{ object.date_of_death }}</p> <!-- author detail link not yet defined -->
+
+{% include 'books.html' %}
+{% endblock %}
