@@ -120,6 +120,12 @@ class Author(models.Model):
         books = Book.objects.filter(author=self.id)
         return ', '.join([book.title for book in books])
 
+    def get_absolute_url(self):
+        """
+        Devuelve el URL a una instancia particular de Book
+        """
+        return reverse('catalog:author-detail', args=[str(self.id)])
+
     class Meta:
         ordering = ['last_name']
 

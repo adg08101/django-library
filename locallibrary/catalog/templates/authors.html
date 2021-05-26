@@ -10,7 +10,7 @@
 <p>The library has the following Authors:</p>
 <ul>
     {% for author in authors %}
-    <li><strong>{{ forloop.counter }}.</strong> {{ author }}</li>
+    <li><a href="{{ author.get_absolute_url }}">{{ author }}</a> ({{ author.date_of_birth }} - {{ author.date_of_death }})</li>
     {% endfor %}
 </ul>
 

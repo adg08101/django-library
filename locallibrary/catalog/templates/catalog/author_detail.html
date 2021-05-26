@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block title %}{{ object.last_name }} - {{ object.first_name }}{% endblock %}
+{% block content %}
+<h1>{{ object.last_name }}, {{ object.first_name }}</h1>
+
+<p><strong>Dates:</strong> {{ object.date_of_birth }} - {{ object.date_of_death }}</p> <!-- author detail link not yet defined -->
+
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Books</h4>
+
+    {% for book in object.book_set.all %}
+    <hr>
+    <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a> {{ book.isbn }}</p>
+    <p class="text-muted">{{ book.summary }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
